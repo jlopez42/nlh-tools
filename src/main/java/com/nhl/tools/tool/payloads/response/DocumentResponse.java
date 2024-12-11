@@ -1,36 +1,26 @@
 package com.nhl.tools.tool.payloads.response;
 
 import java.util.Date;
+import java.util.List;
 
 public class DocumentResponse extends MessageResponse{
 
-    private Long id;
-    private Date createdAt;
+    private List<Documents> documents;
 
     public DocumentResponse(String message, String code) {
         super(message, code);
     }
 
-    public DocumentResponse(String message, String code, Long id, Date createdAt) {
+    public DocumentResponse(String message, String code, List<Documents> documents) {
         super(message, code);
-        this.id = id;
-        this.createdAt = createdAt;
+        this.documents = documents;
     }
 
-    public Long getId() {
-        return id;
+    public List<Documents> getDocuments() {
+        return documents;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setDocuments(List<Documents> documents) {
+        this.documents = documents;
     }
 }

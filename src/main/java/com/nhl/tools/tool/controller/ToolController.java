@@ -19,8 +19,13 @@ public class ToolController {
         this.service = service;
     }
 
-    @PostMapping("create")
+    @PostMapping("document/create")
     public ResponseEntity<DocumentResponse> createProject(@RequestBody DocumentRequest document){
         return ResponseEntity.ok(service.newDocument(document));
+    }
+
+    @GetMapping("document/list")
+    public ResponseEntity<DocumentResponse> listProject(){
+        return ResponseEntity.ok(service.list());
     }
 }
