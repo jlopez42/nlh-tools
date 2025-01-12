@@ -16,6 +16,10 @@ public class DocumentResponse extends MessageResponse{
         this.documents = documents;
     }
 
+    public DocumentResponse() {
+        super();
+    }
+
     public List<Documents> getDocuments() {
         return documents;
     }

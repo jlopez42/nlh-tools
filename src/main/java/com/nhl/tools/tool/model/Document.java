@@ -1,6 +1,8 @@
 package com.nhl.tools.tool.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,18 +12,18 @@ import java.util.Date;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "documentation")
+@AllArgsConstructor
 public class Document {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank
     private Long projectId;
+
+    @NotBlank
+    @Size(max = 100)
     private String title;
+
+    @NotBlank
     private String content;
-    private Date createdAt;
-    private Date updatedAt;
+
 }

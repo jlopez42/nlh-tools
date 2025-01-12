@@ -1,6 +1,7 @@
 package com.nhl.tools.tool.repository;
 
-import com.nhl.tools.tool.model.Document;
+
+import com.nhl.tools.tool.repository.entity.Document;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
