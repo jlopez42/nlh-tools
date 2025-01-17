@@ -1,9 +1,16 @@
 package com.nhl.tools.tool.util;
 
+import com.nhl.tools.tool.model.DeadLine;
 import com.nhl.tools.tool.model.Document;
+import com.nhl.tools.tool.model.Execution;
+import com.nhl.tools.tool.payloads.response.DeadLines;
 import com.nhl.tools.tool.payloads.response.Documents;
+import com.nhl.tools.tool.payloads.response.Executions;
 import com.nhl.tools.tool.repository.entity.Project;
+import com.nhl.tools.tool.repository.entity.ProjectDeadline;
+import com.nhl.tools.tool.repository.entity.ProjectSchedule;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -31,5 +38,52 @@ public class WrapperTool {
         document.setTitle(documentUpgrade.getTitle());
         document.setContent(documentUpgrade.getContent());
         return document;
+    }
+
+    public static ProjectDeadline deadlineFrom(DeadLine deadLine) {
+        ProjectDeadline projectDeadline = new ProjectDeadline();
+        projectDeadline.setProposal(LocalDate.from(deadLine.getProposal().toInstant()));
+        projectDeadline.setAsk(LocalDate.from(deadLine.getAsk().toInstant()));
+        projectDeadline.setReply(LocalDate.from(deadLine.getReply().toInstant()));
+        Project project = new Project();
+        project.setId(deadLine.getProjectId());
+        projectDeadline.setProject(project);
+        return projectDeadline;
+    }
+
+    public static List<DeadLines> convertDeadLineTo(List<ProjectDeadline> projectDeadlines) {
+        List<DeadLines> deadLinesList = new ArrayList<>();
+        projectDeadlines.forEach(projectDeadline -> deadLinesList.add(new DeadLines(projectDeadline.getId(), projectDeadline.getProject().getName(), new Date())));
+        return deadLinesList;
+    }
+
+    public static ProjectDeadline deadlineUpdateFrom(ProjectDeadline projectDeadline, ProjectDeadline deadlineUpgrade) {
+        projectDeadline.setAsk(deadlineUpgrade.getAsk());
+        projectDeadline.setProject(deadlineUpgrade.getProject());
+        projectDeadline.setReply(deadlineUpgrade.getReply());
+        projectDeadline.setProposal(deadlineUpgrade.getProposal());
+        return projectDeadline;
+    }
+
+    public static ProjectSchedule executionFrom(Execution execution) {
+        ProjectSchedule projectSchedule = new ProjectSchedule();
+        projectSchedule.setEndDate(LocalDate.from(execution.getEndProject().toInstant()));
+        projectSchedule.setStartDate(LocalDate.from(execution.getStartProject().toInstant()));
+        Project project = new Project();
+        project.setId(execution.getProjectId());
+        projectSchedule.setProject(project);
+        return projectSchedule;
+    }
+
+    public static ProjectSchedule executionUpdateFrom(ProjectSchedule projectSchedule, ProjectSchedule projectScheduleUpgrade) {
+        projectSchedule.setEndDate(projectScheduleUpgrade.getEndDate());
+        projectSchedule.setStartDate(projectScheduleUpgrade.getStartDate());
+        return projectSchedule;
+    }
+
+    public static List<Executions> convertExecutionTo(List<ProjectSchedule> projectSchedules) {
+        List<Executions> executions = new ArrayList<>();
+        projectSchedules.forEach(projectSchedule -> executions.add(new Executions(projectSchedule.getId(), projectSchedule.getProject().getName(), new Date())));
+        return executions;
     }
 }

@@ -7,13 +7,13 @@ import java.util.Date;
 
 @Setter
 @Getter
-public class Documents {
+public class Executions {
 
     private Long id;
     private String title;
     private Date createdAt;
 
-    public Documents(Long id, String title, Date createdAt) {
+    public Executions(Long id, String title, Date createdAt) {
         this.id = id;
         this.title = title;
         this.createdAt = createdAt;

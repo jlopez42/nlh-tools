@@ -1,26 +1,34 @@
 package com.nhl.tools.tool.model;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Document {
+public class Execution {
 
     @NotBlank
+    @NotNull
     private Long projectId;
 
     @NotBlank
-    @Size(max = 100)
-    private String title;
+    @NotNull
+    private Date publish;
 
     @NotBlank
-    private String content;
+    @NotNull
+    private Date startProject;
+
+    @NotBlank
+    @NotNull
+    private Date endProject;
 
 }

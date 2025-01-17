@@ -20,17 +20,17 @@ public class DocumentController {
         this.service = service;
     }
 
-    @PostMapping("document/create")
+    @PostMapping("/create")
     public ResponseEntity<DocumentResponse> createProject(@RequestBody DocumentRequest document){
         return ResponseEntity.ok(service.newDocument(document));
     }
 
-    @GetMapping("document/list")
+    @GetMapping("/list")
     public ResponseEntity<DocumentResponse> listProject(){
         return ResponseEntity.ok(service.list());
     }
 
-    @PutMapping("document/{documentId}")
+    @PutMapping("/{documentId}")
     public ResponseEntity<DocumentResponse> createProject(@RequestBody DocumentRequest document, @PathVariable int documentId){
         return ResponseEntity.ok(service.updateDocument(document, documentId));
     }

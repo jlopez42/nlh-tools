@@ -1,8 +1,12 @@
 package com.nhl.tools.tool.payloads.response;
 
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+@Setter
+@Getter
 public class DocumentResponse extends MessageResponse{
 
     private List<Documents> documents;
@@ -20,11 +24,4 @@ public class DocumentResponse extends MessageResponse{
         super();
     }
 
-    public List<Documents> getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(List<Documents> documents) {
-        this.documents = documents;
-    }
 }
